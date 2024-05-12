@@ -1,0 +1,102 @@
+v {xschem version=3.4.5 file_version=1.2
+}
+G {}
+K {}
+V {}
+S {}
+E {}
+B 2 -1310 -860 -510 -460 {flags=graph
+y1=-1.2e-06
+y2=1.4e-06
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=-1.5
+x2=8.5
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+
+
+dataset=-1
+unitx=1
+logx=0
+logy=0
+hilight_wave=0
+
+
+
+color="5 6"
+node="vin
+vout"}
+N -1050 -290 -1050 -250 {
+lab=GND}
+N -570 -310 -510 -310 {
+lab=VOUT}
+N -660 -390 -630 -390 {
+lab=GND}
+N -630 -390 -630 -365 {
+lab=GND}
+N -650 -240 -630 -240 {
+lab=GND}
+N -630 -240 -630 -210 {
+lab=GND}
+N -735 -240 -710 -240 {
+lab=#net1}
+N -735 -270 -735 -240 {
+lab=#net1}
+N -735 -390 -720 -390 {
+lab=#net2}
+N -735 -390 -735 -350 {
+lab=#net2}
+N -650 -310 -570 -310 {
+lab=VOUT}
+N -1050 -330 -1050 -290 {
+lab=GND}
+N -1050 -330 -1030 -330 {
+lab=GND}
+N -970 -330 -820 -330 {
+lab=GND}
+N -1030 -330 -970 -330 {
+lab=GND}
+N -1050 -290 -1020 -290 {
+lab=GND}
+N -965 -290 -820 -290 {
+lab=VIN}
+N -580 -310 -580 -280 {
+lab=VOUT}
+N -630 -220 -580 -220 {
+lab=GND}
+C {devices/gnd.sym} -1050 -250 0 0 {name=l1 lab=GND}
+C {devices/lab_wire.sym} -515 -310 0 0 {name=p2 sig_type=std_logic lab=VOUT}
+C {devices/vsource.sym} -690 -390 3 0 {name=V3 value=1.8 savecurrent=false}
+C {devices/gnd.sym} -630 -365 0 0 {name=l2 lab=GND}
+C {devices/vsource.sym} -680 -240 3 0 {name=V2 value=-1.8 savecurrent=false}
+C {devices/gnd.sym} -630 -210 0 0 {name=l3 lab=GND}
+C {devices/lab_wire.sym} -880 -290 0 0 {name=p1 sig_type=std_logic lab=VIN}
+C {devices/launcher.sym} -1245 -415 0 0 {name=h5
+descr="load waves" 
+tclcommand="xschem raw_read $netlist_dir/buffer.raw tran"
+}
+C {devices/code.sym} -1500 -700 0 0 {name=TT_MODELS
+only_toplevel=true
+format="tcleval( @value )"
+value="
+** opencircuitdesign pdks install
+.lib $::SKYWATER_MODELS/sky130.lib.spice tt
+
+"
+spice_ignore=false}
+C {devices/code_shown.sym} -1490 -850 0 0 {name=s1 only_toplevel=false value="
+.control
+save all
+tran 1m 10000m
+write buffer.raw
+.endc
+"}
+C {/foss/designs/sky130_hcmus_ip__instramp/xschem/opamp.sym} -670 -310 0 0 {name=x1}
+C {devices/vsource.sym} -990 -290 1 0 {name=V1 value=16n savecurrent=false}
+C {sky130_fd_pr/cap_mim_m3_1.sym} -580 -250 2 0 {name=C1 model=cap_mim_m3_1 W=12 L=20 MF=10 spiceprefix=X}
